@@ -5,24 +5,17 @@ class Solution {
 
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> hashMap = new HashMap<>();
-        int[] result = new int[2];
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
-            if (!hashMap.containsValue(complement)) {
-                hashMap.put(i, nums[i]);
+            if (hashMap.containsKey(complement)) {
+              return new int[]{hashMap.get(complement), i};
             } else {
-                result[0] = i;
-                for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
-                    if (entry.getValue() == complement) {
-                        result[1] = entry.getKey();
-                        break;
-                    }
-                }
+                hashMap.put(nums[i], i);
             }
-
         }
-        return result;
-    }
+
+        return new int[]{};
+}
 
     public static void main(String[] args) {
         Solution solution = new Solution();
